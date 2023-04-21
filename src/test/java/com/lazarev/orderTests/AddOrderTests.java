@@ -1,6 +1,6 @@
 package com.lazarev.orderTests;
 
-import com.lazarev.base.BaseTest;
+import com.lazarev.BaseTest;
 import com.lazarev.dto.request.OrderDto;
 import com.lazarev.dto.response.ErrorResponseDto;
 import com.lazarev.utils.ResponseWrapper;

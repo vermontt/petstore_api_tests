@@ -1,4 +1,4 @@
-package com.lazarev.base;
+package com.lazarev;
 
 import com.lazarev.config.BaseConfig;
 import io.qameta.allure.restassured.AllureRestAssured;

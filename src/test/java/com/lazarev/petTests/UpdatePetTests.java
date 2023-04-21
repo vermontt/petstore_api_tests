@@ -1,12 +1,10 @@
 package com.lazarev.petTests;
 
-import com.lazarev.base.BaseTest;
+import com.lazarev.BaseTest;
 import com.lazarev.dto.request.PetDto;
 import com.lazarev.dto.response.ErrorResponseDto;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
-import io.qameta.allure.Step;
-import io.qameta.allure.Story;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import com.lazarev.utils.ResponseWrapper;

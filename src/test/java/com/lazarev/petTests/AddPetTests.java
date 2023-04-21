@@ -1,6 +1,6 @@
 package com.lazarev.petTests;
 
-import com.lazarev.base.BaseTest;
+import com.lazarev.BaseTest;
 import com.lazarev.dto.request.PetDto;
 import com.lazarev.dto.response.ErrorResponseDto;
 import io.qameta.allure.Epic;
