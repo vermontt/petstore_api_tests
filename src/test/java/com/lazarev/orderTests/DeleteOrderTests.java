@@ -1,37 +1,33 @@
-package com.lazarev.orderTest;
+package com.lazarev.orderTests;
 
 import com.lazarev.base.BaseTest;
-import com.lazarev.dto.request.OrderBodyModel;
-import com.lazarev.dto.response.OkResponseModel;
+import com.lazarev.dto.request.OrderDto;
+import com.lazarev.dto.response.OkResponseDto;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
-import io.qameta.allure.Story;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import com.lazarev.utils.ResponseWrapper;
 
 import static org.assertj.core.api.SoftAssertions.assertSoftly;
 import static com.lazarev.utils.BuilderExpectedResponse.getOkResponse;
-import static com.lazarev.utils.BuilderBody.getNewOrderModel;
+import static com.lazarev.utils.BuilderBody.getNewOrderDto;
 import static com.lazarev.utils.TestData.*;
 
 
 @Epic("Store контроллер")
 @Feature("Удаление заказа")
-public class DeleteOrderByID extends BaseTest {
+public class DeleteOrderTests extends BaseTest {
 
     @Test
-    @Story("Удаление заказа по айди. Позитивный сценарий")
-    public void testDeleteOrderPositive() {
+    @DisplayName("Удаление заказа по айди. Позитивный сценарий")
+    public void deleteOrderPositiveTest() {
 
-        OrderBodyModel orderModel = getNewOrderModel(VALID_TEST_PET_ID);
-
+        OrderDto orderModel = getNewOrderDto(VALID_TEST_PET_ID);
         ResponseWrapper responseWrapperPost = steps.createNewOrder(orderModel);
-
         ResponseWrapper responseWrapperDelete = steps.deleteOrderByID(VALID_TEST_PET_ID);
-
-        OkResponseModel okResponse = responseWrapperDelete.as(OkResponseModel.class);
-
-        OkResponseModel okResponseExpected = getOkResponse();
+        OkResponseDto okResponse = responseWrapperDelete.as(OkResponseDto.class);
+        OkResponseDto okResponseExpected = getOkResponse();
 
         assertSoftly(
                 softAssertions -> {
@@ -47,10 +43,9 @@ public class DeleteOrderByID extends BaseTest {
         );
     }
 
-
     @Test
-    @Story("Удаление заказа по невалидному айди. Негативный сценарий")
-    public void testDeletePetNegative() {
+    @DisplayName("Удаление заказа по невалидному айди. Негативный сценарий")
+    public void deletePetNegativeTest() {
 
         ResponseWrapper responseWrapper = steps.deleteOrderByID(NOT_VALID_PET_ID);
 
@@ -63,6 +58,4 @@ public class DeleteOrderByID extends BaseTest {
                 }
         );
     }
-
-
 }

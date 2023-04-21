@@ -1,7 +1,8 @@
 package com.lazarev.utils;
 
-import com.lazarev.dto.request.PetBodyModel;
-import com.lazarev.dto.request.OrderBodyModel;
+import com.lazarev.dto.request.PetDto;
+import com.lazarev.dto.request.OrderDto;
+
 import java.util.List;
 
 import static com.lazarev.utils.TestData.*;
@@ -13,19 +14,20 @@ public class BuilderBody {
 
     /**
      * Метод для формирования тела запроса создания питомца
+     *
      * @param id идентификатор питомца
      * @return тело запроса
      */
-    public static PetBodyModel getAddNewPetModel(String id) {
-        return PetBodyModel.builder()
+    public static PetDto getNewPetDto(String id) {
+        return PetDto.builder()
                 .id(id)
-                .category(PetBodyModel.CategoryAndTagsItem.builder()
+                .category(PetDto.CategoryAndTagsDto.builder()
                         .id(VALID_CATEGORY_ID)
                         .name(getRandomCategoryName())
                         .build())
                 .name(getRandomPetName())
                 .photoUrls(List.of(getRandomUrl()))
-                .tags(List.of(PetBodyModel.CategoryAndTagsItem.builder()
+                .tags(List.of(PetDto.CategoryAndTagsDto.builder()
                         .id(VALID_TAG_ID)
                         .name(VALID_TAG_NAME)
                         .build()))
@@ -35,11 +37,12 @@ public class BuilderBody {
 
     /**
      * Метод для формирования тела запроса на создание заказа
+     *
      * @param id идентификатор заказа
      * @return тело запроса
      */
-    public static OrderBodyModel getNewOrderModel(String id) {
-        return OrderBodyModel.builder()
+    public static OrderDto getNewOrderDto(String id) {
+        return OrderDto.builder()
                 .id(id)
                 .petId(VALID_TEST_PET_ID)
                 .quantity(QUANTITY)
@@ -48,6 +51,4 @@ public class BuilderBody {
                 .status(STATUS_ORDER)
                 .build();
     }
-
-
 }

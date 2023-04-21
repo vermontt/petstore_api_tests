@@ -7,8 +7,8 @@ import com.github.javafaker.Faker;
  */
 public class TestData {
 
-     // Валидный идентификатор питомца
-    public static  String VALID_TEST_PET_ID = "109";
+    // Валидный идентификатор питомца
+    public static String VALID_TEST_PET_ID = "109";
 
     //Не валидный идентификатор питомца
     public static final String NOT_VALID_PET_ID = "ddd";
@@ -45,6 +45,7 @@ public class TestData {
 
     /**
      * Метод получения случайного имени питомца
+     *
      * @return случайное имя питомца
      */
     public static String getRandomPetName() {
@@ -53,6 +54,7 @@ public class TestData {
 
     /**
      * Метод получения случайного имени категории
+     *
      * @return случайное имя категории
      */
     public static String getRandomCategoryName() {
@@ -61,6 +63,7 @@ public class TestData {
 
     /**
      * Метод получения случайного URL
+     *
      * @return случайное URL
      */
     public static String getRandomUrl() {
@@ -78,6 +81,4 @@ public class TestData {
 
     //Дата заказа
     public static String SHIP_DATE = "2022-11-13T21:58:55.577Z";
-
-
 }

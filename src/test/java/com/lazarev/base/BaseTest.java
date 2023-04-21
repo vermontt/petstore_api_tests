@@ -18,7 +18,7 @@ public class BaseTest {
     private final BaseConfig config = ConfigFactory.create(BaseConfig.class, System.getenv());
 
     //Экземпляр класса с REST шагами
-    protected final Steps steps = new Steps(getrequestSpecification());
+    protected final Steps steps = new Steps(getRequestSpecification());
 
     /**
      * Метод для получения спецификации RestAssured
@@ -27,10 +27,11 @@ public class BaseTest {
      * accept - параметр в header со значением JSON
      * filter - создает фильтр для allure
      * log - логирование всех деталей
+     *
      * @return спецификация
      */
-    private RequestSpecification getrequestSpecification() {
-       return new RequestSpecBuilder()
+    private RequestSpecification getRequestSpecification() {
+        return new RequestSpecBuilder()
                 .setBaseUri(config.baseUrl())
                 .setContentType(ContentType.JSON)
                 .setAccept(ContentType.JSON)

@@ -18,27 +18,32 @@ public class ResponseWrapper {
 
     /**
      * Метод преобразования тела ответа к объекту
+     *
      * @param Clazz класс объекта
-     * @param <T> тип данных объекта
+     * @param <T>   тип данных объекта
      * @return объект
      */
     public <T> T as(Class<T> Clazz) {
-        return response.as(Clazz);}
+        return response.as(Clazz);
+    }
 
     /**
      * Метод преобразования тела ответа к списку объектов
+     *
      * @param Clazz массив классов объекта
+     * @param <T>   тип данных объекта
      * @return список объектов
-     * @param <T> тип данных объекта
      */
     public <T> List<T> asList(Class<T[]> Clazz) {
-        return List.of(response.as(Clazz));}
+        return List.of(response.as(Clazz));
+    }
 
     /**
      * Метод получения статус кода ответа
+     *
      * @return статус код
      */
     public int getStatusCode() {
-        return response.getStatusCode();}
-
+        return response.getStatusCode();
+    }
 }

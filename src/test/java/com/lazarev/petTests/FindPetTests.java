@@ -1,29 +1,28 @@
-package com.lazarev.petTest;
+package com.lazarev.petTests;
 
 import com.lazarev.base.BaseTest;
-import com.lazarev.dto.request.PetBodyModel;
+import com.lazarev.dto.request.PetDto;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import com.lazarev.utils.ResponseWrapper;
 
 import static org.assertj.core.api.SoftAssertions.assertSoftly;
-import static com.lazarev.utils.BuilderBody.getAddNewPetModel;
+import static com.lazarev.utils.BuilderBody.getNewPetDto;
 import static com.lazarev.utils.TestData.*;
 
 @Epic("Pet контроллер")
-@Feature("Поиск питомца по айди")
-public class FindPetByID extends BaseTest {
+@Feature("Поиск питомца")
+public class FindPetTests extends BaseTest {
 
     @Test
-    @Story("Поиск питомца по айди. Позитивный сценарий")
-    public void testFindPetByIDPositive() {
+    @DisplayName("Поиск питомца по айди. Позитивный сценарий")
+    public void findPetPositiveTest() {
 
-        PetBodyModel petModelRequest = getAddNewPetModel(VALID_TEST_PET_ID);
-
-        ResponseWrapper responseWrapperPost = steps.createNewPetStore(petModelRequest);
-
+        PetDto petModelRequest = getNewPetDto(VALID_TEST_PET_ID);
+        ResponseWrapper responseWrapperPost = steps.createNewPet(petModelRequest);
         ResponseWrapper responseWrapperGet = steps.findPetByID(VALID_TEST_PET_ID);
 
         assertSoftly(
@@ -33,18 +32,16 @@ public class FindPetByID extends BaseTest {
                             .withFailMessage("Status code error")
                             .isEqualTo(STATUS_CODE_OK);
                     softAssertions
-                            .assertThat(responseWrapperGet.as(PetBodyModel.class))
+                            .assertThat(responseWrapperGet.as(PetDto.class))
                             .withFailMessage("Response body doesn`t math")
-                            .isEqualTo(responseWrapperPost.as(PetBodyModel.class));
+                            .isEqualTo(responseWrapperPost.as(PetDto.class));
                 }
         );
-
     }
 
-
     @Test
-    @Story("Поиск питомца по невалидному айди. Негативный сценарий")
-    public void testFindPetByIDNegative() {
+    @DisplayName("Поиск питомца по невалидному айди. Негативный сценарий")
+    public void findPetNegativeTest() {
 
         ResponseWrapper responseWrapper = steps.findPetByID(NOT_VALID_PET_ID);
 
@@ -54,8 +51,7 @@ public class FindPetByID extends BaseTest {
                             .assertThat(responseWrapper.getStatusCode())
                             .withFailMessage("Status code error")
                             .isEqualTo(STATUS_CODE_ERROR_404);
-                    }
+                }
         );
     }
-
 }

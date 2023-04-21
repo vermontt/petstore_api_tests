@@ -1,32 +1,29 @@
-package com.lazarev.orderTest;
+package com.lazarev.orderTests;
 
 import com.lazarev.base.BaseTest;
-import com.lazarev.dto.request.OrderBodyModel;
-import com.lazarev.dto.response.ErrorResponseModel;
+import com.lazarev.dto.request.OrderDto;
+import com.lazarev.dto.response.ErrorResponseDto;
+import com.lazarev.utils.ResponseWrapper;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
-import io.qameta.allure.Story;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import com.lazarev.utils.ResponseWrapper;
 
-import static org.assertj.core.api.SoftAssertions.assertSoftly;
-
+import static com.lazarev.utils.BuilderBody.getNewOrderDto;
 import static com.lazarev.utils.BuilderExpectedResponse.getUnknownErrorResponse;
-import static com.lazarev.utils.BuilderBody.getNewOrderModel;
 import static com.lazarev.utils.TestData.*;
+import static org.assertj.core.api.SoftAssertions.assertSoftly;
 
 @Epic("Store контроллер")
 @Feature("Добавление нового заказа")
-public class AddOrderPet extends BaseTest {
+public class AddOrderTests extends BaseTest {
 
     @Test
-    @Story("Добавление нового заказа. Позитивный сценарий")
-    public void testAddOrderPositive() {
+    @DisplayName("Добавление нового заказа. Позитивный сценарий")
+    public void addOrderPositiveTest() {
 
-        OrderBodyModel orderModel = getNewOrderModel(VALID_TEST_PET_ID);
-
+        OrderDto orderModel = getNewOrderDto(VALID_TEST_PET_ID);
         ResponseWrapper responseWrapperPost = steps.createNewOrder(orderModel);
-
         ResponseWrapper responseWrapperGet = steps.findOrderByID(VALID_TEST_PET_ID);
 
         assertSoftly(
@@ -36,24 +33,21 @@ public class AddOrderPet extends BaseTest {
                             .withFailMessage("Status code error")
                             .isEqualTo(STATUS_CODE_OK);
                     softAssertions
-                            .assertThat(responseWrapperPost.as(OrderBodyModel.class))
+                            .assertThat(responseWrapperPost.as(OrderDto.class))
                             .withFailMessage("Body doesn`t match")
-                            .isEqualTo(responseWrapperGet.as(OrderBodyModel.class));
-
+                            .isEqualTo(responseWrapperGet.as(OrderDto.class));
                 }
-
         );
     }
 
-
     @Test
-    @Story("Добавление нового заказа по невалдиному айди. Негативный сценарий")
-    public void testAddOrderNegative() {
-        OrderBodyModel orderModel = getNewOrderModel(NOT_VALID_PET_ID);
+    @DisplayName("Добавление нового заказа по невалдиному айди. Негативный сценарий")
+    public void addOrderNegativeTest() {
+        OrderDto orderModel = getNewOrderDto(NOT_VALID_PET_ID);
 
         ResponseWrapper responseWrapper = steps.createNewOrder(orderModel);
-        ErrorResponseModel error = responseWrapper.as(ErrorResponseModel.class);
-        ErrorResponseModel errorResponse = getUnknownErrorResponse();
+        ErrorResponseDto error = responseWrapper.as(ErrorResponseDto.class);
+        ErrorResponseDto errorResponse = getUnknownErrorResponse();
 
         assertSoftly(
                 softAssertions -> {
@@ -68,8 +62,4 @@ public class AddOrderPet extends BaseTest {
                 }
         );
     }
-
-
 }
-
-

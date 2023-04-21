@@ -24,15 +24,16 @@ compileTestJava {
 
 dependencies {
     // JUnit
+    implementation 'org.junit.jupiter:junit-jupiter:5.8.2'
     testImplementation 'org.junit.jupiter:junit-jupiter:5.8.2'
 
     //RestAssure
     implementation 'io.rest-assured:rest-assured:5.0.1'
-    implementation "io.rest-assured:rest-assured-all:5.0.1"
+    testImplementation "io.rest-assured:rest-assured-all:5.0.1"
 
     //Allure
-    implementation 'io.qameta.allure:allure-rest-assured:2.20.0'
-    testImplementation 'io.qameta.allure:allure-junit5:2.20.0'
+    implementation 'io.qameta.allure:allure-rest-assured:2.20.1'
+    testImplementation 'io.qameta.allure:allure-junit5:2.20.1'
 
     //AssertJ
     testImplementation 'org.assertj:assertj-core:3.22.0'
@@ -51,6 +52,9 @@ dependencies {
 
     //Jackson
     implementation 'org.openapitools:jackson-databind-nullable:0.2.1'
+
+    //AspectJ
+    runtimeOnly 'org.aspectj:aspectjweaver:1.9.9.1'
 }
 
 test {
