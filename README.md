@@ -22,4 +22,4 @@ Java 17
 
 ### Examples allure report :ghost:
 
-<img src="screenshoot/screenshot_234202.jpg" width="910" height="440"/>
+<img src="https://github.com/vermontt/petstore_api_tests/blob/master/src/test/resources/screenshoot/screenshot_234202.jpg" width="910" height="440"/>
