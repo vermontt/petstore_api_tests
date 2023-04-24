@@ -16,6 +16,9 @@ public class PetDto {
     private final String id;
     private final CategoryAndTagsDto category;
     private final List<CategoryAndTagsDto> tags;
+    private final String name;
+    private final List<String> photoUrls;
+    private final String status;
 
     @Data
     @Builder
@@ -23,8 +26,4 @@ public class PetDto {
         private final String name;
         private final int id;
     }
-
-    private final String name;
-    private final List<String> photoUrls;
-    private final String status;
 }
